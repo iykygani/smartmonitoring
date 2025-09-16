@@ -46,7 +46,7 @@ export function TouristRegistration({ onComplete }: TouristRegistrationProps) {
   };
 
   return (
-    <div className="min-h-screen landing-hero py-8">
+    <div className="min-h-screen bg-gradient-to-br from-blue-900 to-teal-700 py-8">
       <div className="max-w-2xl mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-8">
@@ -60,22 +60,26 @@ export function TouristRegistration({ onComplete }: TouristRegistrationProps) {
           <div className="flex items-center justify-center space-x-4 mb-4">
             {[1, 2, 3].map((num) => (
               <div key={num} className="flex items-center">
-                <div className={`progress-step ${step >= num ? 'active' : 'inactive'}`}>
+                <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium ${
+                  step >= num ? 'bg-teal-500 text-white' : 'bg-white/20 text-white/60'
+                }`}>
                   {num}
                 </div>
                 {num < 3 && (
-                  <div className={`progress-line ${step > num ? 'completed' : 'incomplete'}`} />
+                  <div className={`w-12 h-1 mx-2 ${
+                    step > num ? 'bg-teal-500' : 'bg-white/20'
+                  }`} />
                 )}
               </div>
             ))}
           </div>
-          <div className="text-center text-sm" style={{ color: 'rgba(255, 255, 255, 0.8)' }}>
+          <div className="text-center text-white/80 text-sm">
             Step {step} of 3: {step === 1 ? 'Personal Information' : step === 2 ? 'Travel Details' : 'Verification'}
           </div>
         </div>
 
         {/* Form */}
-        <div className="registration-form">
+        <div className="bg-white rounded-xl shadow-xl p-8">
           <form onSubmit={handleSubmit}>
             {step === 1 && (
               <div className="space-y-6">
@@ -86,60 +90,60 @@ export function TouristRegistration({ onComplete }: TouristRegistrationProps) {
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label className="form-label">Full Name</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
                     <input
                       type="text"
                       name="name"
                       value={formData.name}
                       onChange={handleInputChange}
-                      className="form-input"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                       required
                     />
                   </div>
                   
                   <div>
-                    <label className="form-label">Email</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
                     <input
                       type="email"
                       name="email"
                       value={formData.email}
                       onChange={handleInputChange}
-                      className="form-input"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                       required
                     />
                   </div>
                   
                   <div>
-                    <label className="form-label">Phone Number</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
                     <input
                       type="tel"
                       name="phone"
                       value={formData.phone}
                       onChange={handleInputChange}
-                      className="form-input"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                       required
                     />
                   </div>
                   
                   <div>
-                    <label className="form-label">Nationality</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Nationality</label>
                     <input
                       type="text"
                       name="nationality"
                       value={formData.nationality}
                       onChange={handleInputChange}
-                      className="form-input"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                       required
                     />
                   </div>
                   
                   <div>
-                    <label className="form-label">ID Type</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">ID Type</label>
                     <select
                       name="idType"
                       value={formData.idType}
                       onChange={handleInputChange}
-                      className="form-select"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     >
                       <option value="passport">Passport</option>
                       <option value="aadhaar">Aadhaar Card</option>
@@ -148,13 +152,13 @@ export function TouristRegistration({ onComplete }: TouristRegistrationProps) {
                   </div>
                   
                   <div>
-                    <label className="form-label">ID Number</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">ID Number</label>
                     <input
                       type="text"
                       name="idNumber"
                       value={formData.idNumber}
                       onChange={handleInputChange}
-                      className="form-input"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                       required
                     />
                   </div>
@@ -171,49 +175,49 @@ export function TouristRegistration({ onComplete }: TouristRegistrationProps) {
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label className="form-label">Emergency Contact Name</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Emergency Contact Name</label>
                     <input
                       type="text"
                       name="emergencyContact"
                       value={formData.emergencyContact}
                       onChange={handleInputChange}
-                      className="form-input"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                       required
                     />
                   </div>
                   
                   <div>
-                    <label className="form-label">Emergency Phone</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Emergency Phone</label>
                     <input
                       type="tel"
                       name="emergencyPhone"
                       value={formData.emergencyPhone}
                       onChange={handleInputChange}
-                      className="form-input"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                       required
                     />
                   </div>
                   
                   <div>
-                    <label className="form-label">Destination</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Destination</label>
                     <input
                       type="text"
                       name="destination"
                       value={formData.destination}
                       onChange={handleInputChange}
-                      className="form-input"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                       placeholder="e.g., Guwahati, Assam"
                       required
                     />
                   </div>
                   
                   <div>
-                    <label className="form-label">Purpose of Visit</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Purpose of Visit</label>
                     <select
                       name="purpose"
                       value={formData.purpose}
                       onChange={handleInputChange}
-                      className="form-select"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     >
                       <option value="tourism">Tourism</option>
                       <option value="business">Business</option>
@@ -224,25 +228,25 @@ export function TouristRegistration({ onComplete }: TouristRegistrationProps) {
                   </div>
                   
                   <div>
-                    <label className="form-label">Check-in Date</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Check-in Date</label>
                     <input
                       type="date"
                       name="checkIn"
                       value={formData.checkIn}
                       onChange={handleInputChange}
-                      className="form-input"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                       required
                     />
                   </div>
                   
                   <div>
-                    <label className="form-label">Check-out Date</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Check-out Date</label>
                     <input
                       type="date"
                       name="checkOut"
                       value={formData.checkOut}
                       onChange={handleInputChange}
-                      className="form-input"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                       required
                     />
                   </div>
@@ -270,21 +274,21 @@ export function TouristRegistration({ onComplete }: TouristRegistrationProps) {
                 
                 <div className="space-y-4">
                   <label className="flex items-start space-x-3">
-                    <input type="checkbox" className="form-checkbox" required />
+                    <input type="checkbox" className="mt-1" required />
                     <span className="text-sm text-gray-600">
                       I agree to share my location data for safety monitoring during my visit. This data will be used only for emergency response and safety purposes.
                     </span>
                   </label>
                   
                   <label className="flex items-start space-x-3">
-                    <input type="checkbox" className="form-checkbox" required />
+                    <input type="checkbox" className="mt-1" required />
                     <span className="text-sm text-gray-600">
                       I understand that my digital ID is valid only for the specified duration and I must comply with local safety guidelines and restricted area notifications.
                     </span>
                   </label>
                   
                   <label className="flex items-start space-x-3">
-                    <input type="checkbox" className="form-checkbox" required />
+                    <input type="checkbox" className="mt-1" required />
                     <span className="text-sm text-gray-600">
                       I consent to automated emergency alert dispatch to authorities and my emergency contacts in case of distress signals or anomalous activity detection.
                     </span>
@@ -299,7 +303,7 @@ export function TouristRegistration({ onComplete }: TouristRegistrationProps) {
                 <button
                   type="button"
                   onClick={handlePrevious}
-                  className="btn btn-outline"
+                  className="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
                 >
                   Previous
                 </button>
@@ -311,7 +315,7 @@ export function TouristRegistration({ onComplete }: TouristRegistrationProps) {
                 <button
                   type="button"
                   onClick={handleNext}
-                  className="btn btn-primary flex items-center space-x-2"
+                  className="flex items-center space-x-2 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors"
                 >
                   <span>Next</span>
                   <ChevronRight className="h-4 w-4" />
@@ -319,7 +323,7 @@ export function TouristRegistration({ onComplete }: TouristRegistrationProps) {
               ) : (
                 <button
                   type="submit"
-                  className="btn btn-secondary flex items-center space-x-2" style={{ padding: '0.75rem 2rem' }}
+                  className="flex items-center space-x-2 bg-teal-600 text-white px-8 py-3 rounded-lg hover:bg-teal-700 transition-colors"
                 >
                   <Shield className="h-4 w-4" />
                   <span>Generate Digital ID</span>
