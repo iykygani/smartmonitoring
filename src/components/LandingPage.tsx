@@ -8,11 +8,11 @@ interface LandingPageProps {
 
 export function LandingPage({ onNavigate }: LandingPageProps) {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-900 via-blue-800 to-teal-700">
+    <div className="min-h-screen landing-hero">
       {/* Header */}
-      <header className="bg-white/10 backdrop-blur-sm border-b border-white/20">
+      <header className="landing-header">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
+          <div className="flex items-center justify-between" style={{ height: '4rem' }}>
             <div className="flex items-center space-x-3">
               <Shield className="h-8 w-8 text-white" />
               <h1 className="text-xl font-bold text-white">Tourist Safety System</h1>
@@ -20,13 +20,13 @@ export function LandingPage({ onNavigate }: LandingPageProps) {
             <div className="flex space-x-4">
               <button
                 onClick={() => onNavigate('tourist-registration')}
-                className="bg-white/20 text-white px-4 py-2 rounded-lg hover:bg-white/30 transition-colors"
+                className="btn btn-outline text-white" style={{ backgroundColor: 'rgba(255, 255, 255, 0.2)', borderColor: 'rgba(255, 255, 255, 0.3)' }}
               >
                 Tourist Login
               </button>
               <button
                 onClick={() => onNavigate('authority-dashboard')}
-                className="bg-teal-600 text-white px-4 py-2 rounded-lg hover:bg-teal-700 transition-colors"
+                className="btn btn-secondary"
               >
                 Authority Portal
               </button>
@@ -48,13 +48,13 @@ export function LandingPage({ onNavigate }: LandingPageProps) {
           <div className="flex justify-center space-x-6">
             <button
               onClick={() => onNavigate('tourist-registration')}
-              className="bg-white text-blue-900 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-blue-50 transition-colors shadow-lg"
+              className="btn text-blue-900 font-semibold text-lg shadow-lg" style={{ backgroundColor: '#ffffff', padding: '1rem 2rem', borderRadius: '0.75rem' }}
             >
               Register as Tourist
             </button>
             <button
               onClick={() => onNavigate('authority-dashboard')}
-              className="bg-teal-600 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-teal-700 transition-colors shadow-lg"
+              className="btn btn-secondary font-semibold text-lg shadow-lg" style={{ padding: '1rem 2rem', borderRadius: '0.75rem' }}
             >
               Authority Dashboard
             </button>
@@ -63,7 +63,7 @@ export function LandingPage({ onNavigate }: LandingPageProps) {
 
         {/* Features Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+          <div className="feature-card">
             <Shield className="h-12 w-12 text-teal-300 mb-4" />
             <h3 className="text-xl font-semibold text-white mb-3">Digital ID Security</h3>
             <p className="text-blue-100">
@@ -71,7 +71,7 @@ export function LandingPage({ onNavigate }: LandingPageProps) {
             </p>
           </div>
           
-          <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+          <div className="feature-card">
             <MapPin className="h-12 w-12 text-teal-300 mb-4" />
             <h3 className="text-xl font-semibold text-white mb-3">Geo-Fencing Alerts</h3>
             <p className="text-blue-100">
@@ -79,7 +79,7 @@ export function LandingPage({ onNavigate }: LandingPageProps) {
             </p>
           </div>
           
-          <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+          <div className="feature-card">
             <AlertTriangle className="h-12 w-12 text-teal-300 mb-4" />
             <h3 className="text-xl font-semibold text-white mb-3">Emergency Response</h3>
             <p className="text-blue-100">
@@ -87,7 +87,7 @@ export function LandingPage({ onNavigate }: LandingPageProps) {
             </p>
           </div>
           
-          <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+          <div className="feature-card">
             <Users className="h-12 w-12 text-teal-300 mb-4" />
             <h3 className="text-xl font-semibold text-white mb-3">AI Anomaly Detection</h3>
             <p className="text-blue-100">
@@ -95,7 +95,7 @@ export function LandingPage({ onNavigate }: LandingPageProps) {
             </p>
           </div>
           
-          <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+          <div className="feature-card">
             <Smartphone className="h-12 w-12 text-teal-300 mb-4" />
             <h3 className="text-xl font-semibold text-white mb-3">Mobile App</h3>
             <p className="text-blue-100">
@@ -103,7 +103,7 @@ export function LandingPage({ onNavigate }: LandingPageProps) {
             </p>
           </div>
           
-          <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+          <div className="feature-card">
             <Globe className="h-12 w-12 text-teal-300 mb-4" />
             <h3 className="text-xl font-semibold text-white mb-3">Multilingual Support</h3>
             <p className="text-blue-100">
@@ -113,7 +113,7 @@ export function LandingPage({ onNavigate }: LandingPageProps) {
         </div>
 
         {/* Stats Section */}
-        <div className="bg-white/10 backdrop-blur-sm rounded-xl p-8 border border-white/20">
+        <div className="stats-card">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
             <div>
               <div className="text-3xl font-bold text-white mb-2">24/7</div>
@@ -136,7 +136,7 @@ export function LandingPage({ onNavigate }: LandingPageProps) {
       </main>
 
       {/* Footer */}
-      <footer className="bg-black/20 border-t border-white/20 mt-20">
+      <footer style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)', borderTop: '1px solid rgba(255, 255, 255, 0.2)' }} className="mt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="text-center text-blue-100">
             <p>&copy; 2025 Smart Tourist Safety Monitoring System. Ensuring safe travels across India.</p>

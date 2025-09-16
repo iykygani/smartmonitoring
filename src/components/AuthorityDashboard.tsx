@@ -9,8 +9,12 @@ import {
   FileText,
   Phone,
   Eye,
-  Filter
+  Filter,
+  Brain,
+  Bot
 } from 'lucide-react';
+import { AIAnomalyDetection } from './AIAnomalyDetection';
+import { AIEmergencyAgent } from './AIEmergencyAgent';
 
 export function AuthorityDashboard() {
   const [activeTab, setActiveTab] = useState('overview');
@@ -83,6 +87,25 @@ export function AuthorityDashboard() {
     emergencyAlerts: 3,
     safetyScore: 78
   };
+
+  const emergencyContacts = [
+    {
+      id: '1',
+      name: 'John Smith Sr.',
+      phone: '+1-555-0123',
+      relation: 'Father',
+      priority: 1,
+      whatsappEnabled: true
+    },
+    {
+      id: '2',
+      name: 'Emergency Services',
+      phone: '100',
+      relation: 'Police',
+      priority: 2,
+      whatsappEnabled: false
+    }
+  ];
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -179,6 +202,8 @@ export function AuthorityDashboard() {
               { id: 'overview', name: 'Overview', icon: Eye },
               { id: 'tourists', name: 'Active Tourists', icon: Users },
               { id: 'alerts', name: 'Alerts & Incidents', icon: AlertTriangle },
+              { id: 'ai-anomaly', name: 'AI Anomaly Detection', icon: Brain },
+              { id: 'ai-agents', name: 'AI Emergency Agents', icon: Bot },
               { id: 'reports', name: 'Reports', icon: FileText }
             ].map((tab) => (
               <button
@@ -337,6 +362,19 @@ export function AuthorityDashboard() {
               </div>
             ))}
           </div>
+        )}
+
+        {activeTab === 'ai-anomaly' && (
+          <AIAnomalyDetection 
+            isMonitoring={true}
+          />
+        )}
+
+        {activeTab === 'ai-agents' && (
+          <AIEmergencyAgent 
+            touristId="TS-2025-001234"
+            emergencyContacts={emergencyContacts}
+          />
         )}
 
         {activeTab === 'overview' && (
