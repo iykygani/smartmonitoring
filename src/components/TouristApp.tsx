@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Shield, MapPin, AlertTriangle, Phone, Users, Navigation, Clock, Battery } from 'lucide-react';
+import { Shield, MapPin, AlertTriangle, Phone, Users, Navigation, Clock, Battery, MessageCircle, Bot, Route } from 'lucide-react';
+import { AIChat } from './AIChat';
+import { SmartRouting } from './SmartRouting';
 
 export function TouristApp() {
   const [currentLocation, setCurrentLocation] = useState('Guwahati Central');
   const [safetyScore, setSafetyScore] = useState(85);
   const [isTracking, setIsTracking] = useState(true);
+  const [showAIChat, setShowAIChat] = useState(false);
+  const [showRouting, setShowRouting] = useState(false);
   const [alerts, setAlerts] = useState([
     { id: 1, type: 'info', message: 'Welcome to Guwahati! Stay safe and enjoy your visit.', time: '10:30 AM' },
     { id: 2, type: 'warning', message: 'Heavy rainfall expected in the afternoon. Plan accordingly.', time: '9:15 AM' }
@@ -34,6 +38,16 @@ export function TouristApp() {
       };
       setAlerts(prev => [responseAlert, ...prev]);
     }, 2000);
+  };
+
+  const handleRouteSelect = (route: any) => {
+    const newAlert = {
+      id: Date.now(),
+      type: 'info',
+      message: `Route selected: ${route.name} - Safety Score: ${route.safetyScore}%`,
+      time: new Date().toLocaleTimeString()
+    };
+    setAlerts([newAlert, ...alerts]);
   };
 
   return (
@@ -92,14 +106,28 @@ export function TouristApp() {
 
       {/* Quick Actions */}
       <div className="px-4 mb-6">
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-2 gap-3">
           <button className="card p-4 flex flex-col items-center space-y-2 hover:bg-gray-50 transition-colors cursor-pointer">
             <Phone className="h-6 w-6 text-blue-600" />
             <span className="text-sm font-medium">Call Police</span>
           </button>
+          <button 
+            onClick={() => setShowAIChat(true)}
+            className="card p-4 flex flex-col items-center space-y-2 hover:bg-gray-50 transition-colors cursor-pointer"
+          >
+            <MessageCircle className="h-6 w-6 text-green-600" />
+            <span className="text-sm font-medium">AI Assistant</span>
+          </button>
+          <button 
+            onClick={() => setShowRouting(true)}
+            className="card p-4 flex flex-col items-center space-y-2 hover:bg-gray-50 transition-colors cursor-pointer"
+          >
+            <Route className="h-6 w-6 text-purple-600" />
+            <span className="text-sm font-medium">Safe Routes</span>
+          </button>
           <button className="card p-4 flex flex-col items-center space-y-2 hover:bg-gray-50 transition-colors cursor-pointer">
             <Users className="h-6 w-6 text-green-600" />
-            <span className="text-sm font-medium">Contact Family</span>
+            <span className="text-sm font-medium">Emergency Contacts</span>
           </button>
         </div>
       </div>
@@ -205,6 +233,41 @@ export function TouristApp() {
           </div>
         </div>
       </div>
+
+      {/* AI Chat Component */}
+      <AIChat 
+        isOpen={showAIChat} 
+        onClose={() => setShowAIChat(false)}
+        currentLocation={currentLocation}
+      />
+
+      {/* Smart Routing Modal */}
+      {showRouting && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
+            <div className="p-6 border-b">
+              <div className="flex items-center justify-between">
+                <h2 className="text-xl font-semibold text-gray-900">AI Smart Route Planning</h2>
+                <button
+                  onClick={() => setShowRouting(false)}
+                  className="text-gray-400 hover:text-gray-600"
+                >
+                  <span className="sr-only">Close</span>
+                  <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div className="p-6">
+              <SmartRouting 
+                currentLocation={currentLocation}
+                onRouteSelect={handleRouteSelect}
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
